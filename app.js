@@ -24,6 +24,15 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo', function(req, res) {
 	res.render('todo.ejs', {todolist: req.session.todolist});
+	analytics.identify({
+		"userId": "39200",
+		"anonymousId": "a80b66d5-b86d-41bd-866f-fe04ee7841af",
+		"traits": {
+			"email": "jake@yahoo.com",
+			"name": "Jake Farmer",
+			"industry": "Farming"
+		}
+	});
 })
 
 .post('/todo/add/', urlencodedParser, function(req, res) { //forms send data using the POST method, not GET. So adding tasks is going to be done on the route with POST. 
