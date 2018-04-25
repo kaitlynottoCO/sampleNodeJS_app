@@ -1,0 +1,37 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "sample project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/sheltered-anchorage-71706.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "ARM",
+  "license": "ISC",
+  "dependencies": {
+    "analytics-node": "^3.2.0",
+    "ansi-colors": "^1.0.1",
+    "ansi-strikethrough": "^0.1.1",
+    "body-parser": "^1.18.2",
+    "cookie-session": "^2.0.0-beta.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.3",
+    "request": "^2.83.0",
+    "segmentio": "^0.1.4",
+    "socket.io": "^2.0.4"
+  },
+  "engines": {
+    "node": "9.11.1",
+    "npm": "5.6.0"
+  },
+  "devDependencies": {}
+}

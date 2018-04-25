@@ -1,0 +1,6 @@
+body    { padding-top:5px; }
+.container .jumbotron    { border-radius:2px; }
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: red;
+}
