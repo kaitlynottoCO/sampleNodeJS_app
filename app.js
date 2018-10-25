@@ -25,14 +25,20 @@ we create an empty one in the form of an array before continuing */
 .get('/todo', function(req, res) {
 	res.render('todo.ejs', {todolist: req.session.todolist});
 	analytics.identify({
-		"userId": "39201",
-		"anonymousId": "a80b66d5-b86d-41bd-866f-fe04ee7841jf",
-		"traits": {
-			"email": "nancy@yahoo.com",
-			"name": "Nancy Porter",
-			"industry": "Baker"
-		}
-	});
+        	userId: '019mr8mf4r',
+	        traits: {
+        	    name: 'Michael Bolton',
+       	     	    email: 'mbolton@initech.com',
+            	    plan: 'Enterprise',
+            	    friends: 42
+        	},
+        	integrations: {
+            		Klaviyo: {
+                		listId: 'aimee-test', // will override whatever it is in the UI setting
+                		confirmOptin: false // optional
+            		}
+        	}
+   	 });
 })
 
 .post('/todo/add/', urlencodedParser, function(req, res) { //forms send data using the POST method, not GET. So adding tasks is going to be done on the route with POST. 
