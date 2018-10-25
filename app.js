@@ -34,7 +34,7 @@ we create an empty one in the form of an array before continuing */
         	},
         	integrations: {
             		Klaviyo: {
-                		listId: 'aimee-test', // will override whatever it is in the UI setting
+                		listId: 'Pgq9Gu', // will override whatever it is in the UI setting
                 		confirmOptin: false // optional
             		}
         	}
