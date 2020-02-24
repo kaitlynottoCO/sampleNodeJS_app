@@ -6,6 +6,7 @@ var Analytics = require('analytics-node');
 var uniqid = require('uniqid'); // Creates unique id's
 var analytics = new Analytics('SfAiB68gHHrmthgOYttXN6W6HISFyQ8F');
 var colors = require('ansi-colors');
+var anonymousId = uniqid;
 
 var app = express();
 
@@ -31,7 +32,7 @@ we create an empty one in the form of an array before continuing */
     if (req.body.newtodo != '') {
         req.session.todolist.push(req.body.newtodo); //push to add
         analytics.track({
-  			anonymousId: uniqid,
+  			anonymousId: String(anonymousId),
   			event: 'Added todo',
   			properties: {
     			plan: 'Basic'
@@ -40,7 +41,7 @@ we create an empty one in the form of an array before continuing */
     }
     if (req.body.email != ''){
     	analytics.identify({
-        	anonymousId: uniqid,
+        	anonymousId: String(anonymousId),
 	        traits: {
         	    name: req.body.name,
        	     	    email: req.body.email
@@ -53,7 +54,7 @@ we create an empty one in the form of an array before continuing */
     if (req.params.id != '') {
         req.session.todolist.splice(req.params.id, 1); //removing with a basic splice'
         analytics.track({
-  			anonymousId: uniqid,
+  			anonymousId: String(anonymousId),
   			event: 'Deleted todo',
   			properties: {
     			plan: 'Basic',
@@ -67,7 +68,7 @@ we create an empty one in the form of an array before continuing */
 .get('/todo/complete/:id', function(req, res) {
     if (req.params.id != '') {
         analytics.track({
-  			anonymousId: uniqid,
+  			anonymousId: String(anonymousId),
   			event: 'Task Completed',
   			properties: {
     			plan: 'Basic',
@@ -83,7 +84,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/fav/1/', function(req, res) {
 	analytics.track({
-  			anonymousId: uniqid,
+  			anonymousId: String(anonymousId),
   			event: 'Product Clicked',
   			properties: {
     			product_id: '507f1f77bcf86cd799439011',
@@ -97,7 +98,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/fav/2/', function(req, res) { 
 	analytics.track({
-			anonymousId: uniqid,
+			anonymousId: String(anonymousId),
 			event: 'Product Clicked',
 			properties: {
 			product_id: '507f1f77bcf86cd799439012',
@@ -111,7 +112,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/fav/3/', function(req, res) { 
 	analytics.track({
-			anonymousId: uniqid,
+			anonymousId: String(anonymousId),
 			event: 'Product Clicked',
 			properties: {
 			product_id: '507f1f77bcf86cd799439013',
@@ -125,7 +126,7 @@ we create an empty one in the form of an array before continuing */
     
 .get('/todo/fav/4/', function(req, res) { 
 	analytics.track({
-			anonymousId: uniqid,
+			anonymousId: String(anonymousId),
 			event: 'Product Clicked',
 			properties: {
 			product_id: '507f1f77bcf86cd799439014',
