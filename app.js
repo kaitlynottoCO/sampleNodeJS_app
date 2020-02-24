@@ -6,7 +6,6 @@ var Analytics = require('analytics-node');
 var uniqid = require('uniqid'); // Creates unique id's
 var analytics = new Analytics('SfAiB68gHHrmthgOYttXN6W6HISFyQ8F');
 var colors = require('ansi-colors');
-var anonymousId = uniqid();
 
 var app = express();
 
@@ -26,6 +25,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo', function(req, res) {
 	res.render('todo.ejs', {todolist: req.session.todolist});
+	var anonymousId = uniqid();
 })
 
 .post('/todo/add/', urlencodedParser, function(req, res) { //forms send data using the POST method, not GET. So adding tasks is going to be done on the route with POST. 
@@ -39,15 +39,19 @@ we create an empty one in the form of an array before continuing */
   			}
 		});
     }
-    else if (req.body.email != ''){
-    	analytics.identify({
-        	anonymousId: String(anonymousId),
-	        traits: {
-        	    name: req.body.name,
-       	     	    email: req.body.email
-        	}});
-    }
     res.redirect('/todo'); //redirect the visitor to the list (/todo) after items were added or deleted
+})
+
+.post('/todo/identify/', urlencodedParser, function(req, res) { //forms send data using the POST method, not GET. So adding tasks is going to be done on the route with POST. 
+	if (req.body.email != ''){
+    		analytics.identify({
+        		anonymousId: String(anonymousId),
+	        	traits: {
+        	    		name: req.body.name,
+       	     	    		email: req.body.email
+        		}});
+    	}
+	res.redirect('/todo'); //redirect the visitor to the list (/todo) after items were added or deleted
 })
 
 .get('/todo/delete/:id', function(req, res) {
