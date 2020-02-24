@@ -3,6 +3,7 @@ var session = require('cookie-session'); // Loads the piece of middleware for se
 var bodyParser = require('body-parser'); // Loads the piece of middleware for managing the settings. Allows retrieving from form vs URL
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var Analytics = require('analytics-node');
+var uniqid = require('uniqid'); // Creates unique id's
 var analytics = new Analytics('SfAiB68gHHrmthgOYttXN6W6HISFyQ8F');
 var colors = require('ansi-colors');
 
@@ -24,26 +25,26 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo', function(req, res) {
 	res.render('todo.ejs', {todolist: req.session.todolist});
-	analytics.identify({
-        	userId: '019mr8mf4r',
-	        traits: {
-        	    name: 'Michael Bolton',
-       	     	    email: 'mbolton@initech.com',
-            	    plan: 'Enterprise',
-            	    friends: 42
-        	}});
 })
 
 .post('/todo/add/', urlencodedParser, function(req, res) { //forms send data using the POST method, not GET. So adding tasks is going to be done on the route with POST. 
     if (req.body.newtodo != '') {
         req.session.todolist.push(req.body.newtodo); //push to add
         analytics.track({
-  			userId:'amenne',
+  			anonymousId: uniqid,
   			event: 'Added todo',
   			properties: {
     			plan: 'Basic'
   			}
 		});
+    }
+    if (req.body.email != ''){
+    	analytics.identify({
+        	anonymousId: uniqid,
+	        traits: {
+        	    name: req.body.name,
+       	     	    email: req.body.email'
+        	}});
     }
     res.redirect('/todo'); //redirect the visitor to the list (/todo) after items were added or deleted
 })
@@ -52,7 +53,7 @@ we create an empty one in the form of an array before continuing */
     if (req.params.id != '') {
         req.session.todolist.splice(req.params.id, 1); //removing with a basic splice'
         analytics.track({
-  			userId:'amenne',
+  			anonymousId: uniqid,
   			event: 'Deleted todo',
   			properties: {
     			plan: 'Basic',
@@ -66,7 +67,7 @@ we create an empty one in the form of an array before continuing */
 .get('/todo/complete/:id', function(req, res) {
     if (req.params.id != '') {
         analytics.track({
-  			userId:'amenne',
+  			anonymousId: uniqid,
   			event: 'Task Completed',
   			properties: {
     			plan: 'Basic',
@@ -82,7 +83,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/fav/1/', function(req, res) {
 	analytics.track({
-  			userId:'amenne',
+  			anonymousId: uniqid,,
   			event: 'Product Clicked',
   			properties: {
     			product_id: '507f1f77bcf86cd799439011',
@@ -96,7 +97,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/fav/2/', function(req, res) { 
 	analytics.track({
-			userId:'amenne',
+			anonymousId: uniqid,
 			event: 'Product Clicked',
 			properties: {
 			product_id: '507f1f77bcf86cd799439012',
@@ -110,7 +111,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/fav/3/', function(req, res) { 
 	analytics.track({
-			userId:'amenne',
+			anonymousId: uniqid,
 			event: 'Product Clicked',
 			properties: {
 			product_id: '507f1f77bcf86cd799439013',
@@ -124,7 +125,7 @@ we create an empty one in the form of an array before continuing */
     
 .get('/todo/fav/4/', function(req, res) { 
 	analytics.track({
-			userId:'amenne',
+			anonymousId: uniqid,
 			event: 'Product Clicked',
 			properties: {
 			product_id: '507f1f77bcf86cd799439014',
