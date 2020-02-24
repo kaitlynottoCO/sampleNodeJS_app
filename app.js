@@ -34,7 +34,7 @@ we create an empty one in the form of an array before continuing */
   			anonymousId: String(anonymousId),
   			event: 'Added todo',
   			properties: {
-    			plan: 'Basic'
+    			task: req.body.newtodo
   			}
 		});
     }
@@ -60,8 +60,7 @@ we create an empty one in the form of an array before continuing */
   			anonymousId: String(anonymousId),
   			event: 'Deleted todo',
   			properties: {
-    			plan: 'Basic',
-    			title: req.session.todolist[req.params.id]
+    				title: req.session.todolist[req.params.id]
   			}
 		});
     }
@@ -74,8 +73,7 @@ we create an empty one in the form of an array before continuing */
   			anonymousId: String(anonymousId),
   			event: 'Task Completed',
   			properties: {
-    			plan: 'Basic',
-    			title: req.session.todolist[req.params.id]
+    				title: req.session.todolist[req.params.id]
   			}
 		});
     var task = req.session.todolist[req.params.id]; //completed task
