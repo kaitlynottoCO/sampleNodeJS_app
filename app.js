@@ -31,14 +31,7 @@ we create an empty one in the form of an array before continuing */
        	     	    email: 'mbolton@initech.com',
             	    plan: 'Enterprise',
             	    friends: 42
-        	},
-        	integrations: {
-            		Klaviyo: {
-                		listId: 'Pgq9Gu', // will override whatever it is in the UI setting
-                		confirmOptin: false // optional
-            		}
-        	}
-   	 });
+        	}});
 })
 
 .post('/todo/add/', urlencodedParser, function(req, res) { //forms send data using the POST method, not GET. So adding tasks is going to be done on the route with POST. 
@@ -80,7 +73,6 @@ we create an empty one in the form of an array before continuing */
     			title: req.session.todolist[req.params.id]
   			}
 		});
-    var names = ['Jen', 'Aimee', 'Tonya Harding'];
     var task = req.session.todolist[req.params.id]; //completed task
     req.session.todolist.splice(req.params.id, 1); //remove
     res.render('page.ejs', {task: task});
