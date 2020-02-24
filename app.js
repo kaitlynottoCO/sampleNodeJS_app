@@ -43,7 +43,7 @@ we create an empty one in the form of an array before continuing */
         	anonymousId: uniqid,
 	        traits: {
         	    name: req.body.name,
-       	     	    email: req.body.email'
+       	     	    email: req.body.email
         	}});
     }
     res.redirect('/todo'); //redirect the visitor to the list (/todo) after items were added or deleted
