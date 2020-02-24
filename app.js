@@ -55,14 +55,14 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/delete/:id', function(req, res) {
     if (req.params.id != '') {
-        req.session.todolist.splice(req.params.id, 1); //removing with a basic splice'
         analytics.track({
   			anonymousId: String(anonymousId),
   			event: 'Deleted todo',
   			properties: {
     				title: req.session.todolist[req.params.id]
   			}
-		});
+	});
+	req.session.todolist.splice(req.params.id, 1); //removing with a basic splice'
     }
     res.redirect('/todo'); //redirect the visitor to the list (/todo) after items were added or deleted
 })
