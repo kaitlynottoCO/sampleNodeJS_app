@@ -6,8 +6,8 @@ var Analytics = require('analytics-node');
 var uniqid = require('uniqid'); // Creates unique id's
 var analytics = new Analytics('SfAiB68gHHrmthgOYttXN6W6HISFyQ8F');
 var colors = require('ansi-colors');
-
 var app = express();
+var anonymousId = uniqid();
 
 
 /* Using sessions */
@@ -25,7 +25,6 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo', function(req, res) {
 	res.render('todo.ejs', {todolist: req.session.todolist});
-	var anonymousId = uniqid();
 })
 
 .post('/todo/add/', urlencodedParser, function(req, res) { //forms send data using the POST method, not GET. So adding tasks is going to be done on the route with POST. 
