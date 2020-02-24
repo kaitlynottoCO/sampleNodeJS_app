@@ -6,7 +6,7 @@ var Analytics = require('analytics-node');
 var uniqid = require('uniqid'); // Creates unique id's
 var analytics = new Analytics('SfAiB68gHHrmthgOYttXN6W6HISFyQ8F');
 var colors = require('ansi-colors');
-var anonymousId = uniqid;
+var anonymousId = uniqid();
 
 var app = express();
 
