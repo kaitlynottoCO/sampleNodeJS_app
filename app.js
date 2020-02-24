@@ -83,7 +83,7 @@ we create an empty one in the form of an array before continuing */
 
 .get('/todo/fav/1/', function(req, res) {
 	analytics.track({
-  			anonymousId: uniqid,,
+  			anonymousId: uniqid,
   			event: 'Product Clicked',
   			properties: {
     			product_id: '507f1f77bcf86cd799439011',
